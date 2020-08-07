@@ -28,6 +28,20 @@ def connect_db():
     
 def find(artist):
     session = connect_db()
+    
     albums = session.query(Album).filter(Album.artist == artist).all()
     return albums
     
+def check_on_exists(album):
+    session = connect_db()
+    
+    albums = session.query(Album).filter(
+        Album.album == album["album"],
+        Album.artist == album["artist"],
+        Album.year == album["year"]
+    ).all()
+
+    if not albums:
+        return True
+    
+    return False
