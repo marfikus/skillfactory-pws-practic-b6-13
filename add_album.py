@@ -26,6 +26,8 @@ def connect_db():
     session = Sessions()
     return session
     
+
+    
 def find(artist):
     session = connect_db()
     albums = session.query(Album).filter(Album.artist == artist).all()
