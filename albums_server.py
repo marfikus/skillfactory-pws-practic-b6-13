@@ -38,11 +38,13 @@ def add_new_album():
     # проверка корректности ввода
     valid_result = add_album.valid_data(album)
     if valid_result != "":
-        return "Incorrect input! " + valid_result
-        
+        message = "Incorrect input! " + valid_result
+        return HTTPError(404?, message)
+
     # проверка на существование такого альбома в бд
     if not albums_finder.check_on_exists(album):
-        return "This album is alredy exists in the database!"
+        message = "This album is alredy exists in the database!"
+        return HTTPError(409, message)
     
     # добавление альбома в бд
     
