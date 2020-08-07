@@ -63,3 +63,14 @@ def find(artist):
     albums = session.query(Album).filter(Album.artist == artist).all()
     return albums
     
+def add_album(album):
+    session = connect_db()
+    
+    new_album = Album(
+        year=album["year"], 
+        artist=album["artist"], 
+        genre=album["genre"], 
+        album=album["album"]
+    )    
+    session.add(new_album)
+    session.commit()

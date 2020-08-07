@@ -47,7 +47,8 @@ def add_new_album():
         return HTTPError(409, message)
     
     # добавление альбома в бд
-    
+    add_album.add_album(album)
+    return "Album added"
 
 if __name__ == "__main__":
     run(host="localhost", port=8080, debug=True)
