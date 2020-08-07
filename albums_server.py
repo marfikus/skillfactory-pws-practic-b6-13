@@ -12,14 +12,14 @@ def it_works():
 
 @route("/albums/<artist>")
 def albums(artist):
-    albums_list = finder.find(artist)
+    albums_list = albums_finder.find(artist)
     
     if not albums_list:
         message = "Albums '{}' not found".format(artist)
         result = HTTPError(404, message)
     else:
         album_names = [album.album for album in albums_list]
-        result = "Albums of '{}':<br>".format(artist)
+        result = "{} album(s) of '{}':<br>".format(len(album_names), artist)
         result += "<br>".join(album_names)
     return result
 
