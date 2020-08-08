@@ -15,7 +15,7 @@ def find_albums(artist):
     albums_list = albums.find(artist)
     
     if not albums_list:
-        message = "Albums '{}' not found".format(artist)
+        message = "Albums of '{}' not found".format(artist)
         result = HTTPError(404, message)
     else:
         album_names = [album.album for album in albums_list]

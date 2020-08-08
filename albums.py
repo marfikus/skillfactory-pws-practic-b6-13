@@ -59,9 +59,9 @@ def valid_input_data(album):
     try:
         year = int(year)
     except ValueError:
-        return "Year is not a number"
+        return "Field 'Year' is not a number"
     if year < 0:
-        return "Year is negative number"
+        return "Field 'Year' is negative number"
    
     if album["artist"] is None:
         return "Field 'Artist' is missing"
