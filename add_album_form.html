@@ -8,7 +8,7 @@
 
     </head>
     <body>
-        <form action="http://localhost:8080/albums" method="post" target="_blank">
+        <form id="newAlbumForm" action="http://localhost:8080/albums" method="post">
             <label for="year">Year:</label><br>
             <input type="text" id="year" name="year"><br>
             <label for="artist">Artist:</label><br>
@@ -17,8 +17,9 @@
             <input type="text" id="genre" name="genre"><br>
             <label for="album">Album:</label><br>
             <input type="text" id="album" name="album"><br>
-            <input type="submit" value="Add album to db">
+            <!-- <input type="submit" value="Add album to db"> -->
         </form>
+        <button onclick="checkFormAddAlbum()">Add album to db</button>
 <!--         При отправке формы get-запросом, браузер формирует url, 
         который не подходит под тот шаблон, что ожидает сервер.
         Поэтому перед отправкой с помощью js формируем то, что нужно.
@@ -33,18 +34,39 @@
         <!-- </form> -->
         </div>
         <script type="text/javascript">
+
+            function checkFormAddAlbum() {
+                if (year.value.trim() === "") {
+                    alert("Пустое поле 'Год'!")
+                    return;
+                }
+                if (artist.value.trim() === "") {
+                    alert("Пустое поле 'Исполнитель'!")
+                    return;
+                }
+                if (genre.value.trim() === "") {
+                    alert("Пустое поле 'Жанр'!")
+                    return;
+                }
+                if (album.value.trim() === "") {
+                    alert("Пустое поле 'Название'!")
+                    return;
+                }
+
+                newAlbumForm.submit();
+            }
         
             function findAlbums() {
-                if (artistForSearch.value === "") {
+                let searchValue = artistForSearch.value.trim();
+                if (searchValue === "") {
                     alert("Пустое поле поиска!")
-                    return; 
+                    return;
                 }
-                // searchForm.action = "http://localhost:8080/albums/" + artistForSearch.value;
 
                 let form = document.createElement("form");
-                form.action = "http://localhost:8080/albums/" + artistForSearch.value;
+                form.action = "http://localhost:8080/albums/" + searchValue;
                 form.method = "GET";
-                form.target = "_blank";
+                // form.target = "_blank";
                 document.body.append(form);
                 form.submit();
             }
