@@ -19,6 +19,37 @@
             <input type="text" id="album" name="album"><br>
             <input type="submit" value="Add album to db">
         </form>
+<!--         При отправке формы get-запросом, браузер формирует url, 
+        который не подходит под тот шаблон, что ожидает сервер.
+        Поэтому перед отправкой с помощью js формируем то, что нужно.
+        Придумал 2 варианта: 1)с готовой формой 2)с генерацией формы из js.
+        Оставил первый. -->
+        <!-- <form id="searchForm" method="get" onsubmit="findAlbums()" target="_blank"> -->
+        <div class="search-container">
+            <label for="artist">Artist:</label><br>
+            <input type="text" id="artistForSearch"><br>
+            <!-- <input type="submit" value="Find albums"> -->
+            <button id="findAlbums" onclick="findAlbums()">Find albums</button>
+        <!-- </form> -->
+        </div>
+        <script type="text/javascript">
+        
+            function findAlbums() {
+                if (artistForSearch.value === "") {
+                    alert("Пустое поле поиска!")
+                    return; 
+                }
+                // searchForm.action = "http://localhost:8080/albums/" + artistForSearch.value;
+
+                let form = document.createElement("form");
+                form.action = "http://localhost:8080/albums/" + artistForSearch.value;
+                form.method = "GET";
+                form.target = "_blank";
+                document.body.append(form);
+                form.submit();
+            }
+
+        </script>
     </body>
 </html>
 
