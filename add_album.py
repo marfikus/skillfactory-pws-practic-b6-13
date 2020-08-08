@@ -29,6 +29,8 @@ def connect_db():
 def valid_input_data(album):
     MAX_LENGTH = 150
     
+    if album["year"] is None:
+        return "Field 'Year' is missing"
     year = str(album["year"])
     if len(year) < 4:
         return "Length of field 'Year' less than 4 characters"
@@ -41,16 +43,22 @@ def valid_input_data(album):
     if year < 0:
         return "Year is negative number"
    
+    if album["artist"] is None:
+        return "Field 'Artist' is missing"
     if album["artist"].strip() == "":
         return "Field 'Artist' is empty"
     if len(album["artist"]) > MAX_LENGTH:
         return "Length of field 'Artist' more than {} characters".format(MAX_LENGTH)
         
+    if album["genre"] is None:
+        return "Field 'Genre' is missing"
     if album["genre"].strip() == "":
         return "Field 'Genre' is empty"
     if len(album["genre"]) > MAX_LENGTH:
         return "Length of field 'Genre' more than {} characters".format(MAX_LENGTH)
         
+    if album["album"] is None:
+        return "Field 'Album' is missing"
     if album["album"].strip() == "":
         return "Field 'Album' is empty"
     if len(album["album"]) > MAX_LENGTH:
