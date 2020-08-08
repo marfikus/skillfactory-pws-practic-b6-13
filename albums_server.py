@@ -41,7 +41,7 @@ def add_new_album():
 
     # проверка на существование такого альбома в бд
     if not albums.check_on_exists(album):
-        message = "This album is alredy exists in the database!"
+        message = "This album is already exists in the database!"
         return HTTPError(409, message)
     
     # добавление альбома в бд
