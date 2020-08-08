@@ -4,16 +4,15 @@ from bottle import route
 from bottle import HTTPError
 from bottle import request
 
-import albums_finder
-import add_album
+import albums
 
 @route("/")
 def it_works():
     return "It works!"
 
 @route("/albums/<artist>")
-def albums(artist):
-    albums_list = albums_finder.find(artist)
+def find_albums(artist):
+    albums_list = albums.find(artist)
     
     if not albums_list:
         message = "Albums '{}' not found".format(artist)
@@ -35,18 +34,18 @@ def add_new_album():
     }
     
     # проверка корректности ввода
-    valid_result = add_album.valid_input_data(album)
+    valid_result = albums.valid_input_data(album)
     if valid_result != "":
         message = "Incorrect input! " + valid_result
         return HTTPError(400, message)
 
     # проверка на существование такого альбома в бд
-    if not albums_finder.check_on_exists(album):
+    if not albums.check_on_exists(album):
         message = "This album is alredy exists in the database!"
         return HTTPError(409, message)
     
     # добавление альбома в бд
-    add_album.add_album(album)
+    albums.add(album)
     return "Album added"
 
 if __name__ == "__main__":
