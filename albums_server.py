@@ -24,9 +24,8 @@ def albums(artist):
         result += "<br>".join(album_names)
     return result
     
-@route("/albums/", method="POST")
+@route("/albums", method="POST")
 def add_new_album():
-    # а если некоторые поля отсутствуют? тогда здесь надо проверять
     album = {
         # "id": request.forms.get("id"),
         "year": request.forms.get("year"),
@@ -36,10 +35,10 @@ def add_new_album():
     }
     
     # проверка корректности ввода
-    valid_result = add_album.valid_data(album)
+    valid_result = add_album.valid_input_data(album)
     if valid_result != "":
         message = "Incorrect input! " + valid_result
-        return HTTPError(404?, message)
+        return HTTPError(400, message)
 
     # проверка на существование такого альбома в бд
     if not albums_finder.check_on_exists(album):
