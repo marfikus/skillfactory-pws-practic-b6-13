@@ -4,14 +4,21 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
-        <!-- <link rel="stylesheet" href="./css/game.css"> -->
-
         <title>Add new album</title>
 
     </head>
     <body>
-        
+        <form action="http://localhost:8080/albums" method="post" target="_blank">
+            <label for="year">Year:</label><br>
+            <input type="text" id="year" name="year"><br>
+            <label for="artist">Artist:</label><br>
+            <input type="text" id="artist" name="artist"><br>
+            <label for="genre">Genre:</label><br>
+            <input type="text" id="genre" name="genre"><br>
+            <label for="album">Album:</label><br>
+            <input type="text" id="album" name="album"><br>
+            <input type="submit" value="Add album to db">
+        </form>
     </body>
 </html>
 
