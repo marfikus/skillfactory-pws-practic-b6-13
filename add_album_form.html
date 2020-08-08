@@ -9,32 +9,34 @@
     </head>
     <body>
         <form id="newAlbumForm" action="http://localhost:8080/albums" method="post">
-            <label for="year">Year:</label><br>
+            <p>Добавление нового альбома в базу:</p>
+            <label for="year">Год выпуска:</label><br>
             <input type="text" id="year" name="year"><br>
-            <label for="artist">Artist:</label><br>
+            <label for="artist">Исполнитель:</label><br>
             <input type="text" id="artist" name="artist"><br>
-            <label for="genre">Genre:</label><br>
+            <label for="genre">Жанр:</label><br>
             <input type="text" id="genre" name="genre"><br>
-            <label for="album">Album:</label><br>
+            <label for="album">Название:</label><br>
             <input type="text" id="album" name="album"><br>
         </form>
         <!-- Отправляю форму не стандартным submit'ом, а через js чтобы сначала проверить её. -->
-        <button onclick="checkNewAlbumForm()">Add album to db</button>
-        
+        <button onclick="checkNewAlbumForm()">Добавить альбом</button>
+
         <!-- При отправке формы get-запросом, браузер формирует url, 
         который не подходит под тот шаблон, что ожидает сервер.
         (а если изменить ожидаемый сервером шаблон, то будет не по ТЗ)
         Поэтому вторая форма генерируется из js с правильным url. -->
         <div id="searchForm">
-            <label for="artist">Artist:</label><br>
+            <p>Поиск альбомов в базе по исполнителю:</p>
+            <label for="artist">Исполнитель:</label><br>
             <input type="text" id="artistForSearch"><br>
-            <button onclick="findAlbums()">Find albums</button>
+            <button onclick="findAlbums()">Найти альбомы</button>
         </div>
         <script type="text/javascript">
 
             function checkNewAlbumForm() {
                 if (year.value.trim() === "") {
-                    alert("Пустое поле 'Год'!")
+                    alert("Пустое поле 'Год выпуска'!")
                     return;
                 }
                 if (artist.value.trim() === "") {
