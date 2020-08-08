@@ -26,6 +26,26 @@ def connect_db():
     session = Sessions()
     return session
     
+def find(artist):
+    session = connect_db()
+    
+    albums = session.query(Album).filter(Album.artist == artist).all()
+    return albums
+    
+def check_on_exists(album):
+    session = connect_db()
+    
+    albums = session.query(Album).filter(
+        Album.album == album["album"],
+        Album.artist == album["artist"],
+        Album.year == album["year"]
+    ).all()
+
+    if not albums:
+        return True
+    
+    return False
+
 def valid_input_data(album):
     MAX_LENGTH = 150
     
@@ -66,12 +86,7 @@ def valid_input_data(album):
     
     return ""
     
-def find(artist):
-    session = connect_db()
-    albums = session.query(Album).filter(Album.artist == artist).all()
-    return albums
-    
-def add_album(album):
+def add(album):
     session = connect_db()
     
     new_album = Album(
@@ -82,3 +97,4 @@ def add_album(album):
     )    
     session.add(new_album)
     session.commit()
+    
